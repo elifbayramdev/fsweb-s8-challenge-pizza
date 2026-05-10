@@ -11,12 +11,24 @@ import OrderPage from './pages/OrderPage.jsx';
 import SuccessPage from './components/SuccessPage.jsx';
 
 export default function App() {
+    const [orderResponse, setOrderResponse] = useState(null);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path='/success' element={<SuccessPage/>}/>
+        <Route
+        path="/order"
+        element={
+          <OrderPage setOrderResponse={setOrderResponse} />
+        }
+      />
+      <Route
+        path="/success"
+        element={
+          <SuccessPage orderResponse={orderResponse} />
+        }
+      />
       </Routes>
     </BrowserRouter>
   );

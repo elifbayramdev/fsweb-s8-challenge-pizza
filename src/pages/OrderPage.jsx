@@ -3,7 +3,7 @@ import axios from "axios";
 import OrderPageHeader from "../components/OrderPageHeader";
 import { useNavigate } from "react-router-dom";
 
-export default function OrderPage() {
+export default function OrderPage({setOrderResponse}) {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
@@ -69,7 +69,8 @@ export default function OrderPage() {
     // Sipariş özeti
     console.log("Sipariş Özeti:");
     console.log(res.data);
-    navigate("/success");
+    setOrderResponse(res.data);
+    navigate("/success", { state: res.data });
 
   } catch (err) {
     console.error("HATA ❌", err);
